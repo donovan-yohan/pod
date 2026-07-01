@@ -36,7 +36,7 @@ Model under test: **`gpt-5.5`** (provider `openai-codex`). Validated 2026-07-01.
 | 1 hello | ✅ | ✅ | ✅ | 0 | model built the tool from the prompt + AGENTS.md; code-identical to reference |
 | 2 todo  | ✅ | ✅ | ✅ | 0 | model built `todo_write` + widget + `session_start` restore; loads `OK.` |
 | 3 memory | ✅ | ✅ | ✅ | 0 | `remember` writes `.pi/memory.md` (runtime-tested end-to-end); `session_start` loads it back |
-| 4 workflow | — | — | — | — | not yet drafted |
+| 4 workflow | ✅ | ✅ | ✅ | 0 | `run_workflow` fans a `{}` command template over a list via `pi.exec`; runtime-tested 3/3 items summarized |
 | 5 loop | — | — | — | — | not yet drafted |
 
 ## Findings (things the live run surfaced — fixed in the repo)

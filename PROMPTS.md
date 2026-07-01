@@ -26,9 +26,13 @@ should not need much follow-up. If Pi drifts, the fix is usually one line
 > session_start reads that file back and surfaces the saved facts so they persist
 > across separate sessions. Follow AGENTS.md.
 
-## Step 4 — workflow (scripted fan-out, advanced)  · pending
+## Step 4 — workflow (scripted fan-out, advanced)
 
-> _(drafted after step 3)_
+> Build a Pi extension at `.pi/extensions/workflow.ts` with a `run_workflow` tool
+> that takes a list of items and a shell command template containing `{}`, runs the
+> command once per item (substituting `{}` with the item) via pi.exec, and returns a
+> compact summary of each item's exit code and first line of output — not the raw
+> per-item noise. Follow AGENTS.md.
 
 ## Step 5 — loop (the agent prompts itself)  · pending
 
