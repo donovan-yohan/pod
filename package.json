@@ -1,0 +1,7 @@
+{
+  "name": "coding-agent-workshop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Build a coding agent one Pi extension at a time. Bare agent -> self-hosted capabilities."
+}
