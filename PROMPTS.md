@@ -19,9 +19,12 @@ should not need much follow-up. If Pi drifts, the fix is usually one line
 > replaces a to-do list of {task, status} items, shows the list in a widget, and
 > restores it on session_start so it survives /reload. Follow AGENTS.md.
 
-## Step 3 — memory (durable notes)  · pending
+## Step 3 — memory (durable notes)
 
-> _(drafted after steps 1–2 are validated live)_
+> Build a Pi extension at `.pi/extensions/memory.ts` with a `remember` tool that
+> appends a one-line fact to a human-readable `.pi/memory.md` file, and on
+> session_start reads that file back and surfaces the saved facts so they persist
+> across separate sessions. Follow AGENTS.md.
 
 ## Step 4 — workflow (scripted fan-out, advanced)  · pending
 

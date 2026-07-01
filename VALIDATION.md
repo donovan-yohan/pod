@@ -35,7 +35,7 @@ Model under test: **`gpt-5.5`** (provider `openai-codex`). Validated 2026-07-01.
 |------|:---:|:---:|:---:|:---:|-------|
 | 1 hello | ✅ | ✅ | ✅ | 0 | model built the tool from the prompt + AGENTS.md; code-identical to reference |
 | 2 todo  | ✅ | ✅ | ✅ | 0 | model built `todo_write` + widget + `session_start` restore; loads `OK.` |
-| 3 memory | — | — | — | — | not yet drafted |
+| 3 memory | ✅ | ✅ | ✅ | 0 | `remember` writes `.pi/memory.md` (runtime-tested end-to-end); `session_start` loads it back |
 | 4 workflow | — | — | — | — | not yet drafted |
 | 5 loop | — | — | — | — | not yet drafted |
 
@@ -49,6 +49,12 @@ Model under test: **`gpt-5.5`** (provider `openai-codex`). Validated 2026-07-01.
   `docs/extensions.md` (~100KB). The agent paginated the whole file on every build, blowing
   the turn (600KB+ of read traffic, no code written in time). Rewrote that line to "build
   from the cheat-sheet; don't open the full doc unless stuck." Builds got dramatically faster.
+- **Show the `execute` signature or the tool silently breaks.** Step 3's first build *loaded
+  clean* but never worked: the model wrote `execute({ fact })`, destructuring the args off the
+  **first** parameter — which is `toolCallId` (a string), not the params. The typed args are
+  the **second** arg. AGENTS.md only said "execute returns …", so the model guessed. Added the
+  full signature `execute(toolCallId, params, signal, onUpdate, ctx)` to the primer; the rebuild
+  was correct and runtime-passed. Lesson: "loads clean" ≠ "works" — runtime-test the tool.
 
 ## How the headless check was run (no human in the loop)
 
