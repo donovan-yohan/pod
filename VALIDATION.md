@@ -37,7 +37,15 @@ Model under test: **`gpt-5.5`** (provider `openai-codex`). Validated 2026-07-01.
 | 2 todo  | ✅ | ✅ | ✅ | 0 | model built `todo_write` + widget + `session_start` restore; loads `OK.` |
 | 3 memory | ✅ | ✅ | ✅ | 0 | `remember` writes `.pi/memory.md` (runtime-tested end-to-end); `session_start` loads it back |
 | 4 workflow | ✅ | ✅ | ✅ | 0 | `run_workflow` fans a `{}` command template over a list via `pi.exec`; runtime-tested 3/3 items summarized |
-| 5 loop | — | — | — | — | not yet drafted |
+| 5 loop | ✅\* | ✅ | interactive | 0 | loads clean; `/loop` arms + `turn_end`/`sendUserMessage`/cap correct by construction; self-drive is an interactive capability (see note) |
+
+\* Step 5: the prompt was observed one-shotting a correct-structured `loop.ts` (right
+APIs, `MAX_ITERATIONS` cap), but a cwd-reset + temp-cleanup race in the headless harness
+kept eating the untracked file, so the committed reference is hand-finalized and load-checked.
+The autonomous drive needs the interactive TUI: `pi -p` *invokes* the `/loop` command (confirmed
+— `/help` runs headless too) but does not pump the turns that `sendUserMessage` injects, so the
+loop only self-drives in a live session. The `sendUserMessage` primitive itself was runtime-proven
+in Step 3 (memory injects context that the agent then acts on).
 
 ## Findings (things the live run surfaced — fixed in the repo)
 

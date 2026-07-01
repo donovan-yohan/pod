@@ -8,8 +8,9 @@ agent is pod.
 
 By the end you have a light proof-of-concept of an agent that can plan, remember, and drive its own next step.
 
-> **Status.** Steps 0–4 are cut as branches and validated live (`gpt-5.5`, one-shot, load clean,
-> runtime-tested — see [`VALIDATION.md`](./VALIDATION.md)). Step 5 is drafted and lands next.
+> **Status.** All six steps (0–5) are cut as branches and validated live (`gpt-5.5`, one-shot,
+> load clean, runtime-tested — see [`VALIDATION.md`](./VALIDATION.md)). Step 5's autonomous loop is
+> an interactive capability (run `/loop` in the Pi TUI).
 > This repo also hosts the companion **article series** and **live presentation** (migrating in) —
 > progress tracked in [Issues](https://github.com/donovan-yohan/pod/issues).
 

@@ -34,6 +34,12 @@ should not need much follow-up. If Pi drifts, the fix is usually one line
 > compact summary of each item's exit code and first line of output — not the raw
 > per-item noise. Follow AGENTS.md.
 
-## Step 5 — loop (the agent prompts itself)  · pending
+## Step 5 — loop (the agent prompts itself)
 
-> _(drafted after step 4)_
+> Build a Pi extension at `.pi/extensions/loop.ts` with a `/loop <shell-command>`
+> command: it arms a loop whose goal is for that command to exit 0. On each turn_end,
+> run the command via pi.exec; if it exits 0, stop and report success; otherwise, if
+> under a max-iteration cap (default 5), call pi.sendUserMessage telling the agent the
+> goal command still fails and to keep working toward making it pass; when the cap is
+> reached, stop. Add a `/stop` command to disarm. The cap is a hard brake so the loop
+> cannot run away. Follow AGENTS.md.
